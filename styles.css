@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+* {
+  color: white;
+  box-sizing: border-box;
+  font-family: Satisfy, sans-serif;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+  font-size: 48px;
+  margin: 24px 0;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #bcabcd;
+}
+.frame {
+  height: 480px;
+  background-color: white;
+  padding: 32px;
+  border: 2px solid #9081a0;
+}
+.container {
+  display: flex;
+  margin: 0px 64px;
+}
+.container div,
+ul {
+  flex: 1;
+}
+.container div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+input {
+  width: 200px;
+}
+li {
+  width: 200px;
+}
+.modes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.button {
+  font-size: 32px;
+}
+.proportion {
+  font-size: 24px;
+}
