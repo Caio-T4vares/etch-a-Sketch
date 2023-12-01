@@ -6,22 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Etch-a-Sketch</title>
   <link rel="stylesheet" href="./styles.css">
-  <script src="script.js" defer></script>
 </head>
 
 <body>
   <h1>Etch-a-Sketch</h1>
   <div class="container">
     <div>
-      <ul class="modes">
-        <li class="button erase">Erase</li>
-        <li class="button rainbow">Rainbow mode</li>
-        <li class="button darken">Darken mode</li>
-        <li class="button clear">Clear</li>
-      </ul>
-      <div>
-        <span class="proportion">12x12</span>
-        <input type="range" min="8" max="64">
+      <div class="modes">
+        <button class="button erase">Erase</button>
+        <button class="button rainbow">Rainbow mode</button>
+        <button class="button darken">Darken mode</button>
+        <button class="button clear">Clear</button>
+      </div>
+      <div class="range-input-container">
+        <span class="proportion">8x8</span>
+        <input value="8" type="range" min="8" max="64">
       </div>
     </div>
 
@@ -29,7 +28,7 @@
     </div>
     <div></div>
   </div>
-
+  <script src="script.js"></script>
 </body>
 
 </html>
