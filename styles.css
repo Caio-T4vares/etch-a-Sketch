@@ -51,6 +51,7 @@ button {
   margin: 0;
   padding: 0;
   background: none;
+  cursor: pointer;
 }
 .proportion {
   font-size: 24px;
