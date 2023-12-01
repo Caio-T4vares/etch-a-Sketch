@@ -27,6 +27,9 @@ erase.addEventListener("click", (event) => {
     color = DEFAULT_COLOR;
     event.target.classList.remove("selected");
   } else {
+    if (mode === "rainbow" || mode === "darken") {
+      mode = "";
+    }
     color = "#FFFFFF";
     event.target.classList.add("selected");
   }
@@ -37,7 +40,7 @@ darken.addEventListener("click", (event) => {
     event.target.classList.remove("selected");
     mode = "";
   } else {
-    color = "#FFFFFF";
+    color = "rgb(200,200,200)";
     event.target.classList.add("selected");
     mode = "darken";
   }
@@ -73,7 +76,11 @@ function buildFrame() {
       }px`;
       newSquare.style.border = "1px solid #e1d9e9";
       newSquare.addEventListener("mouseenter", (event) => {
-        event.target.style.backgroundColor = color;
+        if (mode == "darken") {
+          event.target.style.backgroundColor = makeDarker(
+            event.target.style.backgroundColor
+          );
+        } else event.target.style.backgroundColor = color;
       });
       newSquare.addEventListener("mouseleave", (event) => {
         if (mode === "rainbow") {
@@ -91,8 +98,32 @@ function clearFrame() {
   }
 }
 function genRandomRGB() {
-  let r = Math.floor(Math.random() * 255);
-  let g = Math.floor(Math.random() * 255);
-  let b = Math.floor(Math.random() * 255);
-  return "rgb(" + r + "," + g + "," + b + ")";
+  let red = Math.floor(Math.random() * 255);
+  let grenn = Math.floor(Math.random() * 255);
+  let blue = Math.floor(Math.random() * 255);
+  return "rgb(" + red + "," + grenn + "," + blue + ")";
+}
+function makeDarker(oldBackground) {
+  if (oldBackground === "") {
+    return color;
+  } else {
+    if (oldBackground !== `rgb(0,0,0)`) {
+      oldBackground = oldBackground.slice(4);
+      let red = oldBackground.slice(0, oldBackground.indexOf(","));
+      oldBackground = oldBackground.slice(oldBackground.indexOf(",") + 1);
+      let blue = oldBackground.slice(0, oldBackground.indexOf(","));
+      oldBackground = oldBackground.slice(oldBackground.indexOf(",") + 1);
+      let green = oldBackground.slice(0, oldBackground.indexOf(")"));
+      // podia ter pego só um dos valores, vacilei
+
+      red = Math.floor(parseInt(red) - 20);
+      blue = Math.floor(parseInt(red) - 20);
+      green = Math.floor(parseInt(red) - 20);
+
+      red = red < 0 ? 0 : red;
+      blue = blue < 0 ? 0 : blue;
+      green = green < 0 ? 0 : green;
+      return `rgb(${red},${blue}, ${green})`;
+    }
+  }
 }
