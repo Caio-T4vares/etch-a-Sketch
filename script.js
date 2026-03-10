@@ -3,7 +3,9 @@ const sizeInput = document.querySelector("#sizeInput");
 const sizeLabel = document.querySelector(".input-container label");
 const clearButton = document.querySelector("#clear-button");
 const rgbModeButton = document.querySelector("#rgb-button");
+const darkenModeButton = document.querySelector("#darken-button");
 
+const MAX_OPACITY = 1;
 const DRAW_MODE = {
   DEFAULT: 0,
   RGB: 1,
@@ -18,11 +20,25 @@ clearButton.addEventListener("click", () => {
   clearBoard();
 });
 
-rgbModeButton.addEventListener("click", (e) => {
-  const button = e.target;
-  button.classList.toggle("selected");
+darkenModeButton.addEventListener("click", (e) => {
+  const darkenButton = e.target;
+  darkenButton.classList.toggle("selected");
 
-  if (button.classList.contains("selected")) drawMode = DRAW_MODE.RGB;
+  if (rgbModeButton.classList.contains("selected"))
+    rgbModeButton.classList.toggle("selected");
+
+  if (darkenButton.classList.contains("selected")) drawMode = DRAW_MODE.DARKEN;
+  else drawMode = DRAW_MODE.DEFAULT;
+});
+
+rgbModeButton.addEventListener("click", (e) => {
+  const rgbButton = e.target;
+  rgbButton.classList.toggle("selected");
+
+  if (darkenModeButton.classList.contains("selected"))
+    darkenModeButton.classList.toggle("selected");
+
+  if (rgbButton.classList.contains("selected")) drawMode = DRAW_MODE.RGB;
   else drawMode = DRAW_MODE.DEFAULT;
 });
 
@@ -39,7 +55,7 @@ function clearBoard() {
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
     for (let j = 0; j < line.children.length; j++) {
-      line.children[j].style.backgroundColor = "";
+      line.children[j].style = "";
     }
   }
 }
@@ -57,10 +73,19 @@ function generateBoard(size) {
 
       newSquare.addEventListener("mouseenter", (e) => {
         let bgColor;
+        let opacity = 1.0;
         if (drawMode === DRAW_MODE.DEFAULT) bgColor = "black";
         else if (drawMode === DRAW_MODE.RGB) {
           bgColor = `rgb(${genRandomColor()}, ${genRandomColor()}, ${genRandomColor()})`;
+        } else {
+          bgColor =
+            e.target.style.backgroundColor == ""
+              ? "black"
+              : e.target.style.backgroundColor;
+          const elementOpacity = e.target.style.opacity;
+          opacity = elementOpacity ? +elementOpacity + 0.1 : 0.2;
         }
+        e.target.style.opacity = opacity;
         e.target.style.backgroundColor = bgColor;
       });
     }

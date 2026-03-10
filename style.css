@@ -53,10 +53,11 @@ input {
 
   border: 12px solid darkred;
   border-radius: 8px;
+  background-color: white;
 }
 
 .square {
-  border: 1px solid #484850;
+  border: 1px solid black;
   flex: 1;
 }
 
