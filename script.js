@@ -8,6 +8,7 @@ sizeInput.addEventListener("input", (e) => {
   const size = e.target.value;
   sizeLabel.textContent = `${size}x${size}`;
 
+  clearBoard();
   generateBoard(size);
 });
 
@@ -28,5 +29,12 @@ function generateBoard(size) {
     }
 
     board.append(newColumn);
+  }
+}
+
+function clearBoard() {
+  let child;
+  while ((child = board.firstChild)) {
+    child.remove();
   }
 }
