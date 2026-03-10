@@ -85,3 +85,8 @@ button:hover {
   position: absolute;
   left: 25%;
 }
+
+.selected {
+  color: white;
+  text-decoration: underline;
+}

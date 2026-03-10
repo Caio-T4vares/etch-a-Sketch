@@ -2,11 +2,28 @@ const board = document.querySelector("#board");
 const sizeInput = document.querySelector("#sizeInput");
 const sizeLabel = document.querySelector(".input-container label");
 const clearButton = document.querySelector("#clear-button");
+const rgbModeButton = document.querySelector("#rgb-button");
+
+const DRAW_MODE = {
+  DEFAULT: 0,
+  RGB: 1,
+  DARKEN: 2,
+};
+
+let drawMode = DRAW_MODE.DEFAULT;
 
 generateBoard(16);
 
 clearButton.addEventListener("click", () => {
   clearBoard();
+});
+
+rgbModeButton.addEventListener("click", (e) => {
+  const button = e.target;
+  button.classList.toggle("selected");
+
+  if (button.classList.contains("selected")) drawMode = DRAW_MODE.RGB;
+  else drawMode = DRAW_MODE.DEFAULT;
 });
 
 sizeInput.addEventListener("input", (e) => {
@@ -39,7 +56,12 @@ function generateBoard(size) {
       newLine.append(newSquare);
 
       newSquare.addEventListener("mouseenter", (e) => {
-        e.target.style.backgroundColor = "black";
+        let bgColor;
+        if (drawMode === DRAW_MODE.DEFAULT) bgColor = "black";
+        else if (drawMode === DRAW_MODE.RGB) {
+          bgColor = `rgb(${genRandomColor()}, ${genRandomColor()}, ${genRandomColor()})`;
+        }
+        e.target.style.backgroundColor = bgColor;
       });
     }
 
@@ -52,4 +74,8 @@ function removeBoard() {
   while ((child = board.firstChild)) {
     child.remove();
   }
+}
+
+function genRandomColor() {
+  return Math.floor(Math.random() * 255 + 1);
 }
