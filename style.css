@@ -60,7 +60,7 @@ input {
   flex: 1;
 }
 
-.column {
+.line {
   display: flex;
   flex: 1;
 }
