@@ -21,7 +21,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  gap: 24px;
+  gap: 16px;
 }
 
 .input-container {
@@ -63,4 +63,25 @@ input {
 .column {
   display: flex;
   flex: 1;
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 12px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+button:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.options {
+  align-self: flex-start;
+  position: absolute;
+  left: 25%;
 }
