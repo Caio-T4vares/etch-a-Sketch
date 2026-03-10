@@ -1,0 +1,18 @@
+#board {
+  width: 540px;
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+}
+
+.square {
+  border: 1px solid #484850;
+  flex: 1;
+}
+
+.column {
+  display: flex;
+  flex: 1;
+}
