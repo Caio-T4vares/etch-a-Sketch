@@ -13,6 +13,20 @@
   gap: 24px;
 }
 
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 24px;
+}
+
+input {
+  width: 200px;
+}
+
 #board {
   width: 540px;
   height: 540px;
